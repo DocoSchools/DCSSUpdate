@@ -95,20 +95,20 @@
 data.items.forEach(item => {
   let image = '';
 
-  console.log("RAW ITEM:", item); // ← log everything
-
-  if (item.content) {
+  // ✅ Use the enclosure image first (the real one you want)
+  if (item.enclosure && item.enclosure.link) {
+    image = item.enclosure.link;
+  } else if (item.content) {
+    // fallback: extract first <img> from content
     const matches = item.content.match(/<img[^>]+src="([^"]+)"/);
     if (matches && matches[1]) {
       const candidate = matches[1];
-      // Filter out the default Apptegy logo
+      // skip default apptegy logo
       if (!candidate.includes("apptegy.net/uploads/16910/file/2117294")) {
         image = candidate;
       }
     }
   }
-
-  console.log("FINAL IMAGE URL:", image); // ← check what's getting passed
 
   const div = document.createElement('div');
   div.className = 'news-item';
@@ -123,6 +123,7 @@ data.items.forEach(item => {
 
   newsContainer.appendChild(div);
 });
+
 
 
   
