@@ -95,11 +95,10 @@
 data.items.forEach(item => {
   let image = '';
 
-// Attempt to extract actual image from content first
-const matches = item.content.match(/<img[^>]+src="([^"]+)"/);
-if (matches && matches[1]) {
-  image = matches[1];
-}
+  // Try to extract the main content image
+  const matches = item.content.match(/<img[^>]+src="([^"]+)"/);
+  if (matches && matches[1]) {
+    image = matches[1];
   }
 
   // DEBUG LOG
@@ -107,15 +106,14 @@ if (matches && matches[1]) {
 
   const div = document.createElement('div');
   div.className = 'news-item';
-  
-  div.innerHTML = `
-  ${image ? `<img src="${image}" alt="News image" class="news-thumbnail">` : ''}
-  <h2>${item.title}</h2>
-  <p>${new Date(item.pubDate).toLocaleDateString()}</p>
-  <p>${item.description}</p>
-  <a href="${item.link}" target="_blank">Read more</a>
-`;
 
+  div.innerHTML = `
+    ${image ? `<img src="${image}" alt="News image" class="news-thumbnail">` : ''}
+    <h2>${item.title}</h2>
+    <p>${new Date(item.pubDate).toLocaleDateString()}</p>
+    <p>${item.description}</p>
+    <a href="${item.link}" target="_blank">Read more</a>
+  `;
 
   newsContainer.appendChild(div);
 });
