@@ -99,14 +99,14 @@ data.items.forEach(item => {
 
   if (item.content) {
     const matches = item.content.match(/<img[^>]+src="([^"]+)"/);
-   if (matches && matches[1]) {
-  const candidate = matches[1];
-  // Filter out the default Apptegy logo
-  if (!candidate.includes("apptegy.net/uploads/16910/file/2117294")) {
-    image = candidate;
+    if (matches && matches[1]) {
+      const candidate = matches[1];
+      // Filter out the default Apptegy logo
+      if (!candidate.includes("apptegy.net/uploads/16910/file/2117294")) {
+        image = candidate;
+      }
+    }
   }
-}
-
 
   console.log("FINAL IMAGE URL:", image); // ← check what's getting passed
 
@@ -123,6 +123,7 @@ data.items.forEach(item => {
 
   newsContainer.appendChild(div);
 });
+
 
   
   
