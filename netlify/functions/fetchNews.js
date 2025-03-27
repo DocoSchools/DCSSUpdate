@@ -1,7 +1,7 @@
 const fetch = require('node-fetch');
 
 exports.handler = async function(event, context) {
-  const rssUrl = 'https://cdn.mysitemapgenerator.com/shareapi/rss/2603965225';
+  const rssUrl = 'https://cdn.mysitemapgenerator.com/shareapi/rss/2703967203';
   const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}&nocache=${Date.now()}`;
 
   try {
