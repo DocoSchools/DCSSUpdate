@@ -79,16 +79,17 @@
         newsContainer.innerHTML = '';
 
         data.items.forEach(item => {
-          let image = item.thumbnail || '';
+         let image = item.thumbnail || '';
 
-          if (!image && item.enclosure && item.enclosure.link) {
-            image = item.enclosure.link;
-          } else if (!image) {
-            const matches = item.description.match(/<img[^>]+src="([^"]+)"/);
-            if (matches && matches[1]) {
-              image = matches[1];
-            }
-          }
+if (!image && item.enclosure && item.enclosure.link) {
+  image = item.enclosure.link;
+} else if (!image) {
+  const matches = item.description.match(/<img[^>]+src="([^"]+)"/);
+  if (matches && matches[1]) {
+    image = matches[1];
+  }
+}
+
 
           const div = document.createElement('div');
           div.className = 'news-item';
