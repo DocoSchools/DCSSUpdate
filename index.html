@@ -79,12 +79,11 @@
         newsContainer.innerHTML = '';
 
         data.items.forEach(item => {
-        let image = item.thumbnail || '';
+        
+          let image = item.thumbnail || '';
 
-if (!image && item.enclosure) {
-  image = item.enclosure; // rss2json gives it as a string
-} else if (!image) {
-  const matches = item.description.match(/<img[^>]+src="([^"]+)"/);
+if (!image) {
+  const matches = item.content.match(/<img[^>]+src="([^"]+)"/);
   if (matches && matches[1]) {
     image = matches[1];
   }
