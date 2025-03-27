@@ -78,29 +78,27 @@
         const newsContainer = document.getElementById('news');
         newsContainer.innerHTML = '';
 
-        data.items.forEach(item => {
-        
-          let image = item.thumbnail || '';
+data.items.forEach(item => {
+  let image = item.thumbnail || '';
 
-if (!image) {
-  const matches = item.content.match(/<img[^>]+src="([^"]+)"/);
-  if (matches && matches[1]) {
-    image = matches[1];
+  if (!image) {
+    const matches = item.content.match(/<img[^>]+src="([^"]+)"/);
+    if (matches && matches[1]) {
+      image = matches[1];
+    }
   }
-}
 
-
-          const div = document.createElement('div');
-          div.className = 'news-item';
-          div.innerHTML = `
-            ${image ? `<img src="${image}" alt="News image">` : ''}
-            <h2>${item.title}</h2>
-            <p>${new Date(item.pubDate).toLocaleDateString()}</p>
-            <p>${item.description}</p>
-            <a href="${item.link}" target="_blank">Read more</a>
-          `;
-          newsContainer.appendChild(div);
-        });
+  const div = document.createElement('div');
+  div.className = 'news-item';
+  div.innerHTML = `
+    ${image ? `<img src="${image}" alt="News image">` : ''}
+    <h2>${item.title}</h2>
+    <p>${new Date(item.pubDate).toLocaleDateString()}</p>
+    <p>${item.description}</p>
+    <a href="${item.link}" target="_blank">Read more</a>
+  `;
+  newsContainer.appendChild(div);
+});
       } catch (error) {
         console.error('Failed to load RSS feed', error);
         document.getElementById('news').innerHTML = '<p style="text-align:center">Unable to load news feed at this time. Please <a href="https://www.docoschools.org/news" target="_blank" style="color: #ffd700;">visit the DCSS News page</a>.</p>';
