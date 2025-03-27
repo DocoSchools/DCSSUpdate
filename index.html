@@ -95,14 +95,16 @@
 data.items.forEach(item => {
   let image = '';
 
-  // Try to extract the main content image
-  const matches = item.content.match(/<img[^>]+src="([^"]+)"/);
-  if (matches && matches[1]) {
-    image = matches[1];
+  console.log("RAW ITEM:", item); // ← log everything
+
+  if (item.content) {
+    const matches = item.content.match(/<img[^>]+src="([^"]+)"/);
+    if (matches && matches[1]) {
+      image = matches[1];
+    }
   }
 
-  // DEBUG LOG
-  console.log("Image URL:", image);
+  console.log("FINAL IMAGE URL:", image); // ← check what's getting passed
 
   const div = document.createElement('div');
   div.className = 'news-item';
@@ -118,6 +120,7 @@ data.items.forEach(item => {
   newsContainer.appendChild(div);
 });
 
+  
   
       } catch (error) {
         console.error('Failed to load RSS feed', error);
