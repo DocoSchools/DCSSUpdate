@@ -93,13 +93,13 @@
         newsContainer.innerHTML = '';
 
 data.items.forEach(item => {
-  let image = item.thumbnail || '';
+  let image = '';
 
-  if (!image) {
-    const matches = item.content.match(/<img[^>]+src="([^"]+)"/);
-    if (matches && matches[1]) {
-      image = matches[1];
-    }
+// Attempt to extract actual image from content first
+const matches = item.content.match(/<img[^>]+src="([^"]+)"/);
+if (matches && matches[1]) {
+  image = matches[1];
+}
   }
 
   // DEBUG LOG
