@@ -100,16 +100,14 @@ data.items.forEach(item => {
 
   const div = document.createElement('div');
   div.className = 'news-item';
+  
   div.innerHTML = `
-    <div style="border:2px dashed yellow; padding:10px;">
-      <strong>Debug Image Box:</strong><br>
-      <code>${image}</code><br>
-      ${image ? `<img src="${image}" alt="News image" style="max-width:200px; border: 3px solid lime;">` : '<em>No image found</em>'}
-    </div>
-    <h2>${item.title}</h2>
-    <p>${new Date(item.pubDate).toLocaleDateString()}</p>
-    <p>${item.description}</p>
-    <a href="${item.link}" target="_blank">Read more</a>
+  ${image ? `<img src="${image}" alt="News image" class="news-thumbnail">` : ''}
+  <h2>${item.title}</h2>
+  <p>${new Date(item.pubDate).toLocaleDateString()}</p>
+  <p>${item.description}</p>
+  <a href="${item.link}" target="_blank">Read more</a>
+`;
   `;
   newsContainer.appendChild(div);
 });
